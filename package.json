@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A lightweight JavaScript library for quick version validation and comparison.",
   "type": "module",
-  "module": "dist/version.esm.js",
+  "main": "dist/version.esm.js",
+  "module": "src/index.ts",
   "types": "dist/types/src/index.d.ts",
   "publishConfig": {
     "access": "public"
