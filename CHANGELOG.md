@@ -1,3 +1,12 @@
+# 1.1.0 (2024-06-28)
+
+
+### Bug Fixes
+
+* change module path to esm ([f9d90ea](https://github.com/slothkit/version-lite/commit/f9d90ea4ce84e2187ca69d9b63daff4e08d87883))
+
+
+
 ## 1.0.1 (2024-06-28)
 
 
