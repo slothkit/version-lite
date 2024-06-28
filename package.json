@@ -5,6 +5,9 @@
   "type": "module",
   "module": "dist/version.esm.js",
   "types": "dist/types/src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "commit": "git add . && cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
