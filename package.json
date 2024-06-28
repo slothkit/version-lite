@@ -1,10 +1,10 @@
 {
   "name": "@slothkit/version-lite",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A lightweight JavaScript library for quick version validation and comparison.",
   "type": "module",
   "main": "dist/version.esm.js",
-  "module": "src/index.ts",
+  "module": "dist/version.esm.js",
   "types": "dist/types/src/index.d.ts",
   "publishConfig": {
     "access": "public"
