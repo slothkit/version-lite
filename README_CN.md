@@ -1,3 +1,7 @@
+![NPM Version](https://img.shields.io/npm/v/%40slothkit%2Fversion-lite)
+![GitHub last commit](https://img.shields.io/github/last-commit/slothkit/version-lite)
+![NPM Downloads](https://img.shields.io/npm/d18m/%40slothkit%2Fversion-lite)
+
 # Version Lite
 
 Version Lite 是一个轻量级的 JavaScript 库，旨在轻松验证和比较版本号。它提供了一些简单直观的 API，有效地处理版本字符串。

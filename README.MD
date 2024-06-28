@@ -1,3 +1,7 @@
+![NPM Version](https://img.shields.io/npm/v/%40slothkit%2Fversion-lite)
+![GitHub last commit](https://img.shields.io/github/last-commit/slothkit/version-lite)
+![NPM Downloads](https://img.shields.io/npm/d18m/%40slothkit%2Fversion-lite)
+
 # Version Lite
 
 Version Lite is a lightweight JavaScript library designed for easy version validation and comparison. It provides a simple and intuitive API to handle version strings effectively.
