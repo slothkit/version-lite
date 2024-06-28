@@ -1,8 +1,10 @@
 {
-  "name": "version-lite",
-  "version": "0.0.1",
+  "name": "@slothkit/version-lite",
+  "version": "1.0.0",
   "description": "A lightweight JavaScript library for quick version validation and comparison.",
   "type": "module",
+  "module": "dist/version.esm.js",
+  "types": "dist/types/src/index.d.ts",
   "scripts": {
     "commit": "git add . && cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -32,8 +34,10 @@
     "@types/jest-dev-server": "^5.0.3",
     "@types/node": "^20.12.3",
     "commitizen": "^4.3.0",
+    "conventional-changelog-cli": "^5.0.0",
     "core-js": "^3.36.1",
     "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",

@@ -1,12 +1,13 @@
 import { resolve as _resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import fs from 'fs-extra'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
 import { babel } from '@rollup/plugin-babel'
-import fs from 'fs-extra'
+import terser from '@rollup/plugin-terser'
 import babelConfig from '../babel.config.js'
 const { readJsonSync } = fs
 
@@ -16,36 +17,60 @@ const resolve = (p) => _resolve(__dirname, '..', p)
 const extensions = ['.js', '.jsx', '.ts', '.tsx']
 
 const pkgJson = readJsonSync(resolve('package.json'))
-const { name, version } = pkgJson
+const { version } = pkgJson
 
-export default {
-  input: resolve('src/index.ts'),
-  output: {
-    file: resolve(`dist/${name}.js`),
+const outputs = [
+  {
+    file: resolve(pkgJson.module),
     format: 'esm',
     sourcemap: false,
   },
-  plugins: [
-    commonjs(),
-    nodeResolve({ browser: true }),
-    json({ namedExports: false }),
-    typescript({
-      tsconfig: resolve('tsconfig.json'),
-      compilerOptions: {
-        declaration: true,
-        declarationDir: 'types',
-        sourceMap: false,
-      },
-    }),
-    replace({
-      preventAssignment: true,
-      exclude: 'node_modules/**',
-      __VERSION__: JSON.stringify(version),
-    }),
-    babel({
-      extensions,
-      babelHelpers: 'bundled',
-      ...babelConfig,
-    })
-  ]
+  {
+    format: 'iife',
+    name: 'VersionLite',
+    file: resolve('dist/version-lite.min.js'),      
+  }
+]
+
+function createConfig(output) {
+  let isCompress = false
+  if (output.format === 'iife') {
+    isCompress = true
+  }
+  return {
+    input: resolve('src/index.ts'),
+    output,
+    plugins: [
+      commonjs(),
+      nodeResolve({ browser: true }),
+      json({ namedExports: false }),
+      typescript({
+        tsconfig: resolve('tsconfig.json'),
+        compilerOptions: {
+          declaration: true,
+          declarationDir: 'types',
+          sourceMap: false,
+        },
+      }),
+      replace({
+        preventAssignment: true,
+        exclude: 'node_modules/**',
+        __VERSION__: JSON.stringify(version),
+      }),
+      isCompress && babel({
+        extensions,
+        babelHelpers: 'bundled',
+        ...babelConfig,
+      }),
+      isCompress && terser({
+        format: {
+          comments: false,
+        },
+      }),
+    ]
+  }
 }
+
+const config = outputs.map(createConfig)
+
+export default config

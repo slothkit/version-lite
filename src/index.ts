@@ -1,1 +1,4 @@
-export default 1
+import Version from './version'
+
+export default Version
+export { version } from './version'
